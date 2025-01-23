@@ -73,6 +73,9 @@ path "${var.secret-mount}/data/{{identity.entity.aliases.${vault_auth_backend.ku
 path "${var.secret-mount}/metadata/{{identity.entity.aliases.${vault_auth_backend.kubernetes.accessor}.metadata.BusinessSegmentName}}/{{identity.entity.aliases.${vault_auth_backend.kubernetes.accessor}.metadata.AppName}}/*" {
       capabilities = ["list", "read"]
 }
+path "${vault_mount.pki_int.path}*" {
+  capabilities = [ "create", "read", "update", "delete", "list", "sudo" ]
+}
 EOT
 }
 

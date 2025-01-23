@@ -43,6 +43,11 @@ variable "kubernetes-app-secret-destination" {
   default = "secretkv"
 }
 
+variable "kubernetes-app-pki-destination" {
+  type    = string
+  default = "secretpki"
+}
+
 variable "kubernetes-app-namespace" {
   type    = string
   default = "default"
