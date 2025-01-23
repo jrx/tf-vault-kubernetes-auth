@@ -9,7 +9,7 @@ resource "kubernetes_manifest" "vault-pki-secret" {
     spec = {
       namespace = vault_namespace.tenant_namespace.id
       mount     = vault_mount.pki_int.path
-      role      = "test"
+      role      = var.kubernetes-app-business-segment
       destination = {
         name   = var.kubernetes-app-pki-destination
         create = true

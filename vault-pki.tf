@@ -104,9 +104,21 @@ resource "vault_pki_secret_backend_config_urls" "intermediate" {
 resource "vault_pki_secret_backend_role" "test" {
   namespace        = vault_namespace.tenant_namespace.path_fq
   backend          = vault_mount.pki_int.path
-  name             = "test"
-  allowed_domains  = ["test.example.com"]
+  name             = var.kubernetes-app-business-segment
+  allowed_domains  = ["test.example.com", "test2.example.com"]
   allow_subdomains = true
   key_type         = "rsa"
   max_ttl          = 2592000
+}
+
+# Sentinel EGP
+
+resource "vault_egp_policy" "restrict-common-name" {
+  namespace        = vault_namespace.tenant_namespace.path_fq
+  name              = "restrict-common-name"
+  paths             = ["pki_int/issue/team-a"]
+  enforcement_level = "hard-mandatory"
+
+  policy = file("${path.module}/pki.sentinel")
+
 }
