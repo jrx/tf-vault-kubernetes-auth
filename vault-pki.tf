@@ -111,6 +111,22 @@ resource "vault_pki_secret_backend_role" "test" {
   max_ttl          = 2592000
 }
 
+# PKI Policy
+
+resource "vault_policy" "pki-policy" {
+  namespace = vault_namespace.tenant_namespace.path_fq
+  name      = "my-pki-policy"
+
+  policy = <<EOT
+path "${vault_mount.pki_int.path}/issue/{{identity.entity.aliases.${vault_auth_backend.kubernetes.accessor}.metadata.BusinessSegmentName}}" {
+  capabilities = [ "create", "update"]
+}
+path "${vault_mount.pki_int.path}/revoke" {
+  capabilities = [ "create", "update"]
+}
+EOT
+}
+
 # Sentinel EGP
 
 resource "vault_egp_policy" "restrict-common-name" {
