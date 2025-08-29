@@ -114,11 +114,11 @@ resource "vault_pki_secret_backend_role" "test" {
 # Sentinel EGP
 
 resource "vault_egp_policy" "restrict-common-name" {
-  namespace        = vault_namespace.tenant_namespace.path_fq
+  count             = (var.sentinel == true ? 1 : 0)
+  namespace         = vault_namespace.tenant_namespace.path_fq
   name              = "restrict-common-name"
   paths             = ["pki_int/issue/team-a"]
   enforcement_level = "hard-mandatory"
 
   policy = file("${path.module}/pki.sentinel")
-
 }

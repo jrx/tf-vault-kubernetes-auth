@@ -12,6 +12,7 @@ resource "kubernetes_manifest" "vault-pki-secret" {
       role      = var.kubernetes-app-business-segment
       destination = {
         name   = var.kubernetes-app-pki-destination
+        type   = "kubernetes.io/tls"
         create = true
       }
       commonName   = "one.test.example.com"

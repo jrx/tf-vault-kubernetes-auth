@@ -76,6 +76,9 @@ path "${var.secret-mount}/metadata/{{identity.entity.aliases.${vault_auth_backen
 path "${vault_mount.pki_int.path}/issue/{{identity.entity.aliases.${vault_auth_backend.kubernetes.accessor}.metadata.BusinessSegmentName}}" {
   capabilities = [ "create", "update"]
 }
+path "${vault_mount.pki_int.path}/revoke" {
+  capabilities = [ "create", "update"]
+}
 EOT
 }
 

@@ -62,3 +62,9 @@ variable "kubernetes-app-business-segment" {
   type    = string
   default = "team-a"
 }
+
+variable "sentinel" {
+  type        = bool
+  description = "Enable the Sentinel PKI Policy"
+  default     = false
+}
