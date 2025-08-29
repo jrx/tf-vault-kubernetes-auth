@@ -6,7 +6,7 @@ resource "kubernetes_service_account" "app-sa" {
       "vault.hashicorp.com/alias-metadata-BusinessUnitName"    = var.kubernetes-app-business-unit
       "vault.hashicorp.com/alias-metadata-BusinessSegmentName" = var.kubernetes-app-business-segment
       "vault.hashicorp.com/alias-metadata-AppName"             = var.kubernetes-app-service-account
-      "vault.hashicorp.com/alias-metadata-TLSDomain"           = "my-app.test.example.com"
+      "vault.hashicorp.com/alias-metadata-TLSDomain"           = "one.test.example.com"
     }
   }
 }

@@ -14,7 +14,7 @@ resource "kubernetes_manifest" "vault-pki-secret" {
         name   = var.kubernetes-app-pki-destination
         create = true
       }
-      commonName   = "my-app.test.example.com"
+      commonName   = "one.test.example.com"
       format       = "pem"
       revoke       = true
       clear        = true
